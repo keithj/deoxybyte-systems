@@ -1,5 +1,5 @@
 ;;;
-;;; Copyright (C) 2008 Keith James. All rights reserved.
+;;; Copyright (C) 2008-2009 Keith James. All rights reserved.
 ;;;
 ;;; This program is free software: you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 
 (in-package :cl-system-utilities)
 
+;;; Wrapper functions to make ASDF slightly less painful
 (defun compile-system (system &key force)
   (operate 'compile-op system :force force))
 
@@ -28,3 +29,4 @@
 
 (defun document-system (system &key force)
   (operate 'doc-op system :force force))
+

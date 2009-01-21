@@ -1,5 +1,5 @@
 ;;;
-;;; Copyright (C) 2008 Keith James. All rights reserved.
+;;; Copyright (C) 2008-2009 Keith James. All rights reserved.
 ;;;
 ;;; This program is free software: you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -45,19 +45,11 @@
 (defmethod operation-done-p ((op test-op) (c lift-test-config))
   nil)
 
-;;; load on demand so that we don't add dependencies for those who do
-;;; not need to run the tests
-(defmethod perform :before ((op test-op) (c lift-test-config))
-  (unless (find-package :lift)
-    (operate 'load-op :lift)))
-
 (defmethod perform ((op test-op) (c lift-test-config))
   ;; Need to work relative to the root of the target system
   (let ((*default-pathname-defaults* (component-pathname
                                       (find-system (target-system c)))))    
-    (funcall (intern (string :run-tests) (string :lift))
-             :config (component-pathname c))))
-
+    (lift:run-tests :config (component-pathname c))))
 
 (defmethod source-file-type ((c cldoc-config) (s module))
   ;; The cldoc pathname is a directory, so has pathname-type NIL
@@ -72,16 +64,8 @@
 (defmethod perform ((op doc-op) (c cl-source-file))
   nil)
 
-;;; load on demand so that we don't add dependencies for those who do
-;;; not need to generate the documentation
-(defmethod perform :before ((op doc-op) (c cldoc-config))
-  (unless (find-package :cldoc)
-    (operate 'load-op :cldoc)))
-
 (defmethod perform ((op doc-op) (c cldoc-config))
   ;; Need to work relative to the root of the target system
-  (let* ((target (find-system (target-system c)))
-         (*default-pathname-defaults* (component-pathname target))
-         (fn-sym (intern (string :extract-documentation) (string :cldoc)))
-         (op-sym (intern (string :html) (string :cldoc))))
-    (funcall fn-sym op-sym (namestring (component-pathname c)) target)))
+  (let ((target (find-system (target-system c))))
+    (cldoc:extract-documentation 'cldoc:html
+                                 (namestring (component-pathname c)) target)))
