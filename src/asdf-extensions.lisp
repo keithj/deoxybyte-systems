@@ -17,32 +17,31 @@
 
 (in-package :cl-system-utilities)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; LIFT unit testing ASDF extension
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defclass lift-test-config (static-file)
   ((target-system :initform nil
                   :initarg :target-system
-                  :accessor target-system)))
-
-(defclass cldoc-config (static-file)
-  ((target-system :initform nil
-                  :initarg :target-system
-                  :accessor target-system)))
-
-(defclass doc-op (operation)
-  ())
+                  :accessor target-system
+                  :documentation "The system to be tested
+   e.g. :cl-system-utilities"))
+  (:documentation "An ASDF component that represents a LIFT unit
+  testing configuration file."))
 
 (defmethod source-file-type ((c lift-test-config) (s module))
   "config")
-
-(defmethod perform ((op load-op) (c lift-test-config))
-  nil)
-
-(defmethod perform ((op compile-op) (c lift-test-config))
-  nil)
 
 (defmethod input-files ((op test-op) (c lift-test-config))
   (component-pathname c))
 
 (defmethod operation-done-p ((op test-op) (c lift-test-config))
+  nil)
+
+(defmethod perform ((op load-op) (c lift-test-config))
+  nil)
+
+(defmethod perform ((op compile-op) (c lift-test-config))
   nil)
 
 (defmethod perform ((op test-op) (c lift-test-config))
@@ -51,7 +50,25 @@
                                       (find-system (target-system c)))))    
     (lift:run-tests :config (component-pathname c))))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; CL-DOC ASDF extension
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defclass cldoc-config (static-file)
+  ((target-system :initform nil
+                  :initarg :target-system
+                  :accessor target-system
+                  :documentation "The system to be documented
+                  e.g. :cl-system-utilities"))
+  (:documentation "An ASDF component that represents a CL-DOC
+  documentation extraction configuration file."))
+
+(defclass doc-op (operation)
+  ()
+  (:documentation "An ASDF operation that extracts docstring
+  documentation from Lisp code using CL-DOC."))
+
 (defmethod source-file-type ((c cldoc-config) (s module))
+  "Arse."
   ;; The cldoc pathname is a directory, so has pathname-type NIL
   nil)
 

@@ -17,11 +17,20 @@
 
 (defpackage #:cl-system-utilities
   (:use :common-lisp :asdf :cl-dot)
-  (:nicknames :csu)
+  (:nicknames :su)
   (:export
    #:lift-test-config
    #:cldoc-config
    #:compile-system
    #:load-system
    #:test-system
-   #:document-system))
+   #:document-system)
+  (:documentation "The cl-system-utilities package contains tools for
+  managing Common Lisp systems in batch mode and from the REPL. It
+  provides convenient wrapper functions for ASDF operations and
+  collects my ASDF extensions in one place.
+
+  This package is required by most of my other Common Lisp systems
+  because it supplies the unit test and documentation
+  configurations (using LIFT {http://common-lisp.net/project/lift/}
+  and CL-DOC {http://common-lisp.net/project/cldoc/} respectively."))

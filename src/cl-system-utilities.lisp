@@ -19,14 +19,19 @@
 
 ;;; Wrapper functions to make ASDF slightly less painful
 (defun compile-system (system &key force)
+  "Compiles SYSTEM using ASDF. When FORCE is T, forces the operation."
   (operate 'compile-op system :force force))
 
 (defun load-system (system &key force)
+  "Loads SYSTEM using ASDF. When FORCE is T, forces the operation."
   (operate 'load-op system :force force))
 
 (defun test-system (system &key force)
+  "Runs unit tests on SYSTEM using ASDF and LIFT. When FORCE is T,
+forces the operation."
   (operate 'test-op system :force force))
 
 (defun document-system (system &key force)
+  "Extracts documentation from SYSTEM using ASDF and CL-DOC. When
+FORCE is T, forces the operation."
   (operate 'doc-op system :force force))
-
