@@ -28,8 +28,6 @@
   :version "0.1.0"
   :licence "GPL v3"
   :depends-on (:lift :cldoc :cl-dot)
-;;   :in-order-to ((compile-op (load-op :lift))
-;;                 (load-op (load-op :lift :cldoc :cl-dot)))
   :components ((:module :cl-system-utilities
                         :serial t
                         :pathname "src/"

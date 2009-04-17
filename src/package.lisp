@@ -21,10 +21,19 @@
   (:export
    #:lift-test-config
    #:cldoc-config
+
    #:compile-system
    #:load-system
    #:test-system
-   #:document-system)
+   #:document-system
+
+   #:package-version-p
+   #:package-version
+   #:package-version=
+   #:package-version>
+   #:package-version>=
+   #:package-version<
+   #:package-version<=)
   (:documentation "The cl-system-utilities package contains tools for
   managing Common Lisp systems in batch mode and from the REPL. It
   provides convenient wrapper functions for ASDF operations and
