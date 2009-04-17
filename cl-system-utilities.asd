@@ -25,7 +25,6 @@
 (defsystem cl-system-utilities
   :name "Common Lisp system utilities"
   :author "Keith James"
-  :version "0.1.0"
   :licence "GPL v3"
   :depends-on (:lift :cldoc :cl-dot)
   :components ((:module :cl-system-utilities
