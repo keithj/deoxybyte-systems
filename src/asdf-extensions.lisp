@@ -68,7 +68,6 @@
   documentation from Lisp code using CL-DOC."))
 
 (defmethod source-file-type ((c cldoc-config) (s module))
-  "Arse."
   ;; The cldoc pathname is a directory, so has pathname-type NIL
   nil)
 
