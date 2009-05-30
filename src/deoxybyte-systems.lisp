@@ -15,7 +15,7 @@
 ;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;;;
 
-(in-package :cl-system-utilities)
+(in-package :uk.co.deoxybyte-systems)
 
 ;;; Wrapper functions to make ASDF slightly less painful
 (defun compile-system (system &key force)

@@ -17,19 +17,19 @@
 
 (in-package :cl-user)
 
-(defpackage #:cl-system-utilities-system
+(defpackage #:uk.co.deoxybyte-systems-system
   (:use :common-lisp :asdf))
 
-(in-package :cl-system-utilities-system)
+(in-package :uk.co.deoxybyte-systems-system)
 
-(defsystem cl-system-utilities
-  :name "Common Lisp system utilities"
+(defsystem deoxybyte-systems
+  :name "Deoxybyte Common Lisp system utilities"
   :author "Keith James"
   :licence "GPL v3"
   :depends-on (:lift :cldoc :cl-dot)
-  :components ((:module :cl-system-utilities
+  :components ((:module :deoxybyte-systems
                         :serial t
                         :pathname "src/"
                         :components ((:file "package")
                                      (:file "asdf-extensions")
-                                     (:file "cl-system-utilities")))))
+                                     (:file "deoxybyte-systems")))))

@@ -15,7 +15,7 @@
 ;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;;;
 
-(in-package :cl-system-utilities)
+(in-package :uk.co.deoxybyte-systems)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; LIFT unit testing ASDF extension
@@ -82,6 +82,7 @@
 
 (defmethod perform ((op doc-op) (c cldoc-config))
   ;; Need to work relative to the root of the target system
-  (let ((target (find-system (target-system c))))
-    (cldoc:extract-documentation 'cldoc:html
-                                 (namestring (component-pathname c)) target)))
+  (let ((target (find-system (target-system c)))
+        (path (component-pathname c)))
+    (ensure-directories-exist path)
+    (cldoc:extract-documentation 'cldoc:html (namestring path) target)))

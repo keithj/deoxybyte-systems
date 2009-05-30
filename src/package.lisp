@@ -15,9 +15,11 @@
 ;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;;;
 
-(defpackage #:cl-system-utilities
-  (:use :common-lisp :asdf :cl-dot)
-  (:nicknames :su)
+(defpackage #:uk.co.deoxybyte-systems
+  (:use #:common-lisp #:asdf #:cl-dot)
+  (:nicknames
+   #:deoxybyte-systems
+   #:dxs)
   (:export
    #:lift-test-config
    #:cldoc-config
@@ -34,7 +36,7 @@
    #:package-version>=
    #:package-version<
    #:package-version<=)
-  (:documentation "The cl-system-utilities package contains tools for
+  (:documentation "The deoxybyte-systems package contains tools for
   managing Common Lisp systems in batch mode and from the REPL. It
   provides convenient wrapper functions for ASDF operations and
   collects my ASDF extensions in one place.
