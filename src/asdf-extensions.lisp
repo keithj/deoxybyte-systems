@@ -17,6 +17,14 @@
 
 (in-package :uk.co.deoxybyte-systems)
 
+;; This works around a bug in ASDF where it raises an error when
+;; finding timestamps. This occurs where the component pathname is a
+;; directory that does not yet exist.
+(defmethod operation-done-p :before ((op operation) (c component))
+  (let ((path (component-pathname c)))
+    (when (fad:directory-pathname-p path)
+      (ensure-directories-exist path))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; LIFT unit testing ASDF extension
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -84,5 +92,4 @@
   ;; Need to work relative to the root of the target system
   (let ((target (find-system (target-system c)))
         (path (component-pathname c)))
-    (ensure-directories-exist path)
     (cldoc:extract-documentation 'cldoc:html (namestring path) target)))

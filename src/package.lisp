@@ -15,8 +15,8 @@
 ;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;;;
 
-(defpackage #:uk.co.deoxybyte-systems
-  (:use #:common-lisp #:asdf #:cl-dot)
+(defpackage :uk.co.deoxybyte-systems
+  (:use #:common-lisp #:asdf #:cldoc)
   (:nicknames
    #:deoxybyte-systems
    #:dxs)
@@ -36,12 +36,12 @@
    #:package-version>=
    #:package-version<
    #:package-version<=)
-  (:documentation "The deoxybyte-systems package contains tools for
+  (:documentation "The deoxybyte-systems system provides tools for
   managing Common Lisp systems in batch mode and from the REPL. It
   provides convenient wrapper functions for ASDF operations and
   collects my ASDF extensions in one place.
 
-  This package is required by most of my other Common Lisp systems
+  This system is required by most of my other Common Lisp systems
   because it supplies the unit test and documentation
   configurations (using LIFT {http://common-lisp.net/project/lift/}
   and CL-DOC {http://common-lisp.net/project/cldoc/} respectively."))

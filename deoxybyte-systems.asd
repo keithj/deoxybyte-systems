@@ -17,7 +17,7 @@
 
 (in-package :cl-user)
 
-(defpackage #:uk.co.deoxybyte-systems-system
+(defpackage :uk.co.deoxybyte-systems-system
   (:use :common-lisp :asdf))
 
 (in-package :uk.co.deoxybyte-systems-system)
@@ -26,7 +26,7 @@
   :name "Deoxybyte Common Lisp system utilities"
   :author "Keith James"
   :licence "GPL v3"
-  :depends-on (:lift :cldoc :cl-dot)
+  :depends-on (:lift :cldoc :cl-dot :cl-fad)
   :components ((:module :deoxybyte-systems
                         :serial t
                         :pathname "src/"
