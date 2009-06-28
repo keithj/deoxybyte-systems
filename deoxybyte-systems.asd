@@ -1,5 +1,7 @@
- ;;;
-;;; Copyright (C) 2008 Keith James. All rights reserved.
+;;;
+;;; Copyright (C) 2008-2009 Keith James. All rights reserved.
+;;;
+;;; This file is part of deoxybyte-systems.
 ;;;
 ;;; This program is free software: you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -26,7 +28,7 @@
   :name "Deoxybyte Common Lisp system utilities"
   :author "Keith James"
   :licence "GPL v3"
-  :depends-on (:lift :cldoc :cl-dot :cl-fad)
+  :depends-on (:lift :cldoc :cl-fad)
   :components ((:module :deoxybyte-systems
                         :serial t
                         :pathname "src/"

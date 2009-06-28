@@ -1,6 +1,8 @@
 ;;;
 ;;; Copyright (C) 2008-2009 Keith James. All rights reserved.
 ;;;
+;;; This file is part of deoxybyte-systems.
+;;;
 ;;; This program is free software: you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
 ;;; the Free Software Foundation, either version 3 of the License, or
@@ -17,7 +19,7 @@
 
 (in-package :uk.co.deoxybyte-systems)
 
-;; This works around a bug in ASDF where it raises an error when
+;; This works around an issue in ASDF where it raises an error when
 ;; finding timestamps. This occurs where the component pathname is a
 ;; directory that does not yet exist.
 (defmethod operation-done-p :before ((op operation) (c component))
@@ -67,7 +69,7 @@
                   :accessor target-system
                   :documentation "The system to be documented
                   e.g. :cl-system-utilities"))
-  (:documentation "An ASDF component that represents a CL-DOC
+  (:documentation "An ASDF component that represents a CLDOC
   documentation extraction configuration file."))
 
 (defclass doc-op (operation)
