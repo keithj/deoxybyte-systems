@@ -17,7 +17,8 @@ Documentation
 See the Lisp docstrings, particularly the package docstrings for an
 overview. HTML documentation may be generated with the command:
 
- (dxs:document-system :cl-sam)
+  (cldoc:extract-documentation 'cldoc:html "./doc/html/"
+    (find-system :deoxybyte-systems))
 
 at the REPL, provided that CLDOC is installed.
 
