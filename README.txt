@@ -15,7 +15,11 @@ because it supplies the unit test and documentation configurations
 Documentation
 
 See the Lisp docstrings, particularly the package docstrings for an
-overview.
+overview. HTML documentation may be generated with the command:
+
+ (dxs:document-system :cl-sam)
+
+at the REPL, provided that CLDOC is installed.
 
 
 Dependencies
