@@ -61,7 +61,7 @@
     (lift:run-tests :config (component-pathname c))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; CL-DOC ASDF extension
+;;; CLDOC ASDF extension
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defclass cldoc-config (static-file)
   ((target-system :initform nil
@@ -75,7 +75,7 @@
 (defclass doc-op (operation)
   ()
   (:documentation "An ASDF operation that extracts docstring
-  documentation from Lisp code using CL-DOC."))
+  documentation from Lisp code using CLDOC."))
 
 (defmethod source-file-type ((c cldoc-config) (s module))
   ;; The cldoc pathname is a directory, so has pathname-type NIL
