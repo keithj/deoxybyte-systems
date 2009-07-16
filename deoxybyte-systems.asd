@@ -28,7 +28,9 @@
   :name "Deoxybyte Common Lisp system utilities"
   :author "Keith James"
   :licence "GPL v3"
-  :depends-on (:lift :cldoc :cl-fad)
+  :depends-on ((:version :cl-fad "0.6.2")
+               (:version :lift "1.7.0")
+               :cldoc) 
   :components ((:module :deoxybyte-systems
                         :serial t
                         :pathname "src/"
