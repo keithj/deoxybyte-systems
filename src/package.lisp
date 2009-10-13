@@ -18,10 +18,26 @@
 ;;;
 
 (defpackage :uk.co.deoxybyte-systems
-  (:use #:common-lisp #:asdf #:cldoc)
+  (:use #:common-lisp #:cldoc)
   (:nicknames
    #:deoxybyte-systems
    #:dxs)
+  (:import-from #:asdf
+                #:module
+                #:component
+                #:component-pathname
+                #:input-files
+                #:source-file-type
+                #:static-file
+                #:cl-source-file
+                #:operation
+                #:operate
+                #:operation-done-p
+                #:find-system
+                #:perform
+                #:compile-op
+                #:load-op
+                #:test-op)
   (:export
    #:lift-test-config
    #:cldoc-config
