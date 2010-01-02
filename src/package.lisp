@@ -1,5 +1,5 @@
 ;;;
-;;; Copyright (C) 2008-2009 Keith James. All rights reserved.
+;;; Copyright (C) 2008-2010 Keith James. All rights reserved.
 ;;;
 ;;; This file is part of deoxybyte-systems.
 ;;;
@@ -18,7 +18,7 @@
 ;;;
 
 (defpackage :uk.co.deoxybyte-systems
-  (:use #:common-lisp #:cldoc)
+  (:use #:common-lisp)
   (:nicknames
    #:deoxybyte-systems
    #:dxs)

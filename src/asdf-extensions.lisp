@@ -1,5 +1,5 @@
 ;;;
-;;; Copyright (C) 2008-2009 Keith James. All rights reserved.
+;;; Copyright (C) 2008-2010 Keith James. All rights reserved.
 ;;;
 ;;; This file is part of deoxybyte-systems.
 ;;;
@@ -57,8 +57,12 @@
 (defmethod perform ((op test-op) (c lift-test-config))
   ;; Need to work relative to the root of the target system
   (let ((*default-pathname-defaults* (component-pathname
-                                      (find-system (target-system c)))))    
-    (lift:run-tests :config (component-pathname c))))
+                                      (find-system (target-system c)))))
+    ;; Refer to LIFT package indirectly so that we are not forced to
+    ;; load it immediately
+    ;; (lift:run-tests :config (component-pathname c))
+    (funcall (intern (string 'run-tests) :lift)
+             :config (component-pathname c))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; CLDOC ASDF extension
@@ -94,4 +98,19 @@
   ;; Need to work relative to the root of the target system
   (let ((target (find-system (target-system c)))
         (path (component-pathname c)))
-    (cldoc:extract-documentation 'cldoc:html (namestring path) target)))
+
+    ;; I'm sure I should be able to do the following in the ASDF file
+    ;; using something like
+    ;;
+    ;; :in-order-to ((doc-op (load-op :cldoc)))
+    ;;
+    ;; but :in-order-to doesn't seem to be extensible for new
+    ;; operations.
+    (unless (find-package :cldoc)
+      (operate 'load-op :cldoc))
+
+    ;; Refer to CLDOC package indirectly so that we are not forced to
+    ;; load it immediately
+    ;; (cldoc:extract-documentation 'cldoc:html (namestring path) target)
+    (funcall (intern (string 'extract-documentation) :cldoc)
+             (intern (string 'html) :cldoc) (namestring path) target)))
