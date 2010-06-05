@@ -7,9 +7,9 @@ in one place, instead of copy-pasting them into the system definition
 files that need them. It does not add symbols to the ASDF package.
   
 This system is required by most of my other Common Lisp systems
-because it supplies the unit test and documentation configurations
-(using LIFT <http://common-lisp.net/project/lift/> and CLDOC
-<http://common-lisp.net/project/cldoc/> respectively.
+because it supplies the optional unit test and documentation
+configurations (using LIFT <http://common-lisp.net/project/lift/> and
+CLDOC <http://common-lisp.net/project/cldoc/> respectively.
 
 
 Documentation
@@ -26,6 +26,10 @@ at the REPL, provided that CLDOC is installed.
 Dependencies
 
 ASDF    http://common-lisp.net/project/asdf/
+cl-fad  http://www.weitz.de/cl-fad/
+
+Optional dependencies
+
 LIFT    http://common-lisp.net/project/lift/
 CLDOC   http://common-lisp.net/project/cldoc/
-cl-fad  http://www.weitz.de/cl-fad/
+
