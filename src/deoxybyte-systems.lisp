@@ -38,22 +38,21 @@
 
 (in-package :uk.co.deoxybyte-systems)
 
-;;; Wrapper functions to make ASDF slightly less painful
-(defun compile-system (system &key force)
-  "Compiles SYSTEM using ASDF. When FORCE is T, forces the operation."
-  (operate 'compile-op system :force force))
+;;; compile-system and test-system are now provided by ASDF
 
-(defun load-system (system &key force)
-  "Loads SYSTEM using ASDF. When FORCE is T, forces the operation."
-  (operate 'load-op system :force force))
-
-(defun test-system (system &key force)
-  "Runs unit tests on SYSTEM using ASDF and LIFT. When FORCE is T,
-forces the operation."
-  (operate 'test-op system :force force))
+(defun load-system (system &key force verbose version quiet)
+  "Loads SYSTEM using ASDF. When FORCE is T, forces the
+operation. When QUIET is T, muffles style-warnings and compiler
+notes."
+  (if quiet
+      (handler-bind (#+sbcl(sb-ext:compiler-note #'muffle-warning)
+                           (style-warning #'muffle-warning))
+        (operate 'load-op system :force force :verbose verbose
+                 :version version))
+    (operate 'load-op system :force force :verbose verbose :version version)))
 
 (defun document-system (system &key force)
-  "Extracts documentation from SYSTEM using ASDF and CL-DOC. When
+  "Extracts documentation from SYSTEM using ASDF and CLDOC. When
 FORCE is T, forces the operation."
   (operate 'doc-op system :force force))
 

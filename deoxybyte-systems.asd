@@ -36,14 +36,7 @@
 ;;; SUCH DAMAGE.
 ;;;
 
-(in-package :cl-user)
-
-(defpackage :uk.co.deoxybyte-systems-system
-  (:use :common-lisp :asdf))
-
-(in-package :uk.co.deoxybyte-systems-system)
-
-(defsystem deoxybyte-systems
+(asdf:defsystem deoxybyte-systems
   :name "Deoxybyte Common Lisp system utilities"
   :version "0.2.3"
   :author "Keith James"

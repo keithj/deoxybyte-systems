@@ -38,7 +38,7 @@
 
 (in-package :uk.co.deoxybyte-systems)
 
-;; This works around an issue in ASDF where it raises an error when
+;; This works around an issue in ASDF 1 where it raises an error when
 ;; finding timestamps. This occurs where the component pathname is a
 ;; directory that does not yet exist.
 (defmethod operation-done-p :before ((op operation) (c component))
@@ -74,9 +74,10 @@
   nil)
 
 (defmethod perform ((op test-op) (c lift-test-config))
-  ;; Need to work relative to the root of the target system
-  (let ((*default-pathname-defaults* (component-pathname
-                                      (find-system (target-system c)))))
+  ;; Make sure LIFT drops its test results in the system's home directory
+  (let ((*default-pathname-defaults* (system-relative-pathname
+                                      (find-system (target-system c))
+                                      (pathname ""))))
     ;; Refer to LIFT package indirectly so that we are not forced to
     ;; load it immediately
     ;; (lift:run-tests :config (component-pathname c))
@@ -115,8 +116,8 @@
 
 (defmethod perform ((op doc-op) (c cldoc-config))
   ;; Need to work relative to the root of the target system
-  (let ((target (find-system (target-system c)))
-        (path (component-pathname c)))
+  (let* ((target (find-system (target-system c)))
+         (path (system-relative-pathname target (pathname ""))))
 
     ;; I'm sure I should be able to do the following in the ASDF file
     ;; using something like

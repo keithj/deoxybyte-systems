@@ -42,9 +42,11 @@
    #:deoxybyte-systems
    #:dxs)
   (:import-from #:asdf
+                #:defsystem
                 #:module
                 #:component
                 #:component-pathname
+                #:system-relative-pathname
                 #:input-files
                 #:source-file-type
                 #:static-file
@@ -116,7 +118,7 @@ Then use standard ASDF syntax to add new components:
 ;;;                         :components ((:file \"package.lisp\")
 ;;;                                      (:file \"example.lisp\")))
 ;;;                (:lift-test-config :lift-tests
-;;;                                   :pathname \"example-test.config\"
+;;;                                   :pathname \"example-test\"
 ;;;                                   :target-system :example-system)
 ;;;                (:cldoc-config :cldoc-documentation
 ;;;                               :pathname \"doc/html/\"
