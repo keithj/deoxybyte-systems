@@ -55,6 +55,8 @@
                 #:operate
                 #:operation-done-p
                 #:find-system
+                #:compile-system
+                #:test-system
                 #:perform
                 #:compile-op
                 #:load-op
