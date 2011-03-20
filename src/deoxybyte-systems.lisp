@@ -1,7 +1,5 @@
 ;;;
-;;; Copyright (c) 2008-2010, Keith James.
-;;;
-;;; All rights reserved.
+;;; Copyright (c) 2008-2010 Keith James. All rights reserved.
 ;;;
 ;;; Redistribution and use in source and binary forms, with or without
 ;;; modification, are permitted provided that the following conditions
@@ -38,18 +36,25 @@
 
 (in-package :uk.co.deoxybyte-systems)
 
-;;; compile-system and test-system are now provided by ASDF
+;;; compile-system is now provided by ASDF
 
-(defun load-system (system &key force verbose version quiet)
+(defun load-system (system &rest args &key force verbose version)
   "Loads SYSTEM using ASDF. When FORCE is T, forces the
-operation. When QUIET is T, muffles style-warnings and compiler
-notes."
-  (if quiet
-      (handler-bind (#+sbcl(sb-ext:compiler-note #'muffle-warning)
-                           (style-warning #'muffle-warning))
-        (operate 'load-op system :force force :verbose verbose
-                 :version version))
-    (operate 'load-op system :force force :verbose verbose :version version)))
+operation."
+  (flet ((load-op ()
+           (apply #'operate 'load-op system args)))
+    (if verbose
+        (load-op)
+        (and (load-op) t))))
+
+(defun test-system (system &rest args &key force verbose version)
+  "Loads SYSTEM using ASDF. When FORCE is T, forces the
+operation. When VERBOSE is NIL, suppresses the return value from
+ASDF:TEST-SYSTEM which pushes all the test results off my REPL. Grr."
+  (let ((result (apply #'operate 'test-op system args)))
+    (if verbose
+        result
+        (and result t))))
 
 (defun document-system (system &key force)
   "Extracts documentation from SYSTEM using ASDF and CLDOC. When
