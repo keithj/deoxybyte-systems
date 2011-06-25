@@ -36,7 +36,7 @@
 
 (asdf:defsystem deoxybyte-systems
   :name "Deoxybyte Common Lisp system utilities"
-  :version "0.3.0"
+  :version "0.3.1"
   :author "Keith James"
   :licence "New BSD"
   :depends-on ((:version :cl-fad "0.6.2"))
