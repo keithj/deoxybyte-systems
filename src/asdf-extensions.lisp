@@ -60,7 +60,7 @@
   "config")
 
 (defmethod input-files ((op test-op) (c lift-test-config))
-  (component-pathname c))
+  (list (component-pathname c)))
 
 (defmethod operation-done-p ((op test-op) (c lift-test-config))
   nil)
