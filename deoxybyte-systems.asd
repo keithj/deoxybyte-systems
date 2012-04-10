@@ -1,5 +1,5 @@
 ;;;
-;;; Copyright (c) 2008-2011 Keith James. All rights reserved.
+;;; Copyright (c) 2008-2012 Keith James. All rights reserved.
 ;;;
 ;;; Redistribution and use in source and binary forms, with or without
 ;;; modification, are permitted provided that the following conditions
@@ -36,7 +36,7 @@
 
 (asdf:defsystem deoxybyte-systems
   :name "Deoxybyte Common Lisp system utilities"
-  :version "0.3.2"
+  :version "0.4.0"
   :author "Keith James"
   :licence "New BSD"
   :depends-on ((:version :cl-fad "0.6.2"))

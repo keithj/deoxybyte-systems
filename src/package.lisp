@@ -1,5 +1,5 @@
 ;;;
-;;; Copyright (c) 2008-2011 Keith James. All rights reserved.
+;;; Copyright (c) 2008-2012 Keith James. All rights reserved.
 ;;;
 ;;; Redistribution and use in source and binary forms, with or without
 ;;; modification, are permitted provided that the following conditions
@@ -66,15 +66,7 @@
    #:compile-system
    #:load-system
    #:test-system
-   #:document-system
-
-   #:package-version-p
-   #:package-version
-   #:package-version=
-   #:package-version>
-   #:package-version>=
-   #:package-version<
-   #:package-version<=)
+   #:document-system)
   (:documentation "The deoxybyte-systems system provides tools for
 managing Common Lisp systems in batch mode and from the REPL. It
 provides convenient wrapper functions for ASDF operations and collects
@@ -106,7 +98,7 @@ extensions will be loaded in some other way):
 
 ;;; (eval-when (:compile-toplevel :load-toplevel :execute)
 ;;;  (when (asdf:find-system :deoxybyte-systems nil)
-;;;    (asdf:operate 'asdf:load-op :deoxybyte-systems)))
+;;;    (asdf:load-system :deoxybyte-systems)))
 
 Then use standard ASDF syntax to add new components:
 
@@ -127,8 +119,15 @@ Then use standard ASDF syntax to add new components:
 To load a system:
 ;;; (dxs:load-system :example-system)
 
+or the equivalent:
+;;; (asdf:load-system :example-system)
+
+
 To run tests:
-;;; (dxs:test-system :example-system)
+;;; (dxs:load-system :example-system)
+
+or the equivalent:
+;;; (asdf:test-system :example-system)
 
 To generate system documentation:
 ;;; (dxs:document-system :example-system)"))
