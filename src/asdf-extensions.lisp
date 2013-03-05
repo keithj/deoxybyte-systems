@@ -1,5 +1,5 @@
 ;;;
-;;; Copyright (c) 2008-2012 Keith James. All rights reserved.
+;;; Copyright (c) 2008-2013 Keith James. All rights reserved.
 ;;;
 ;;; Redistribution and use in source and binary forms, with or without
 ;;; modification, are permitted provided that the following conditions
@@ -36,14 +36,6 @@
 
 (in-package :uk.co.deoxybyte-systems)
 
-;; This works around an issue in ASDF 1 where it raises an error when
-;; finding timestamps. This occurs where the component pathname is a
-;; directory that does not yet exist.
-(defmethod operation-done-p :before ((op operation) (c component))
-  (let ((path (component-pathname c)))
-    (when (fad:directory-pathname-p path)
-      (ensure-directories-exist path))))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; LIFT unit testing ASDF extension
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -52,7 +44,7 @@
                   :initarg :target-system
                   :accessor target-system
                   :documentation "The system to be tested
-   e.g. :cl-system-utilities"))
+   e.g. :cl-sam"))
   (:documentation "An ASDF component that represents a LIFT unit
   testing configuration file."))
 
@@ -90,7 +82,7 @@
                   :initarg :target-system
                   :accessor target-system
                   :documentation "The system to be documented
-                  e.g. :cl-system-utilities"))
+                  e.g. :cl-sam"))
   (:documentation "An ASDF component that represents a CLDOC
   documentation extraction configuration file."))
 
