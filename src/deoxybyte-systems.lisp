@@ -36,7 +36,14 @@
 
 (in-package :uk.co.deoxybyte-systems)
 
-(defun document-system (system &key force)
-  "Extracts documentation from SYSTEM using ASDF and CLDOC. When
-FORCE is T, forces the operation."
-  (operate 'doc-op system :force force))
+(defun document-system (system &rest keys)
+  "Extracts documentation from SYSTEM using ASDF and CLDOC."
+  (apply #'operate 'doc-op system keys))
+
+(defun load-system (system &rest keys)
+  "Alias for ASDF:LOAD-SYSTEM."
+  (apply #'operate 'load-op system keys))
+
+(defun test-system (system &rest keys)
+  "Alias for ASDF:TEST-SYSTEM."
+  (apply #'operate 'test-op system keys))
